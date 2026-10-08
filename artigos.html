@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<style id="no-flash">html,body{background:#0A0A09;color:#F4F2EC;margin:0}</style>
+<script src="./support.js"></script>
+</head>
+<body style="background:#0A0A09">
+<x-dc>
+<helmet>
+<title>Artigos — Boanerges</title>
+<link rel="icon" type="image/png" href="assets/brand/symbol-yellow.png">
+<link rel="apple-touch-icon" href="assets/brand/symbol-yellow.png">
+<link rel="stylesheet" href="https://use.typekit.net/lki5cby.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:56px;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+body{margin:0;background:#0A0A09;color:#F4F2EC;font-family:'arpona','Figtree',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#FFC907;text-decoration:none}
+a:hover{color:#F4F2EC}
+</style>
+<script src="artigos.js"></script>
+</helmet>
+<div style="min-height:100vh;background:#0A0A09;display:flex;flex-direction:column">
+<header style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(12px,2.5vw,22px) clamp(16px,4vw,56px);background:rgba(10,10,9,0.86);backdrop-filter:blur(8px)">
+  <a href="index.html" style="display:flex;align-items:center">
+    <img src="assets/brand/symbol-yellow.png" alt="Boanerges" style="height:clamp(24px,6vw,30px);width:auto;display:block;flex-shrink:0">
+  </a>
+  <nav style="display:flex;align-items:center;gap:clamp(12px,3.5vw,40px);font-size:clamp(10.5px,2.9vw,13px);font-weight:600;letter-spacing:clamp(0.03em,0.6vw,0.08em);text-transform:uppercase;white-space:nowrap">
+    <a href="index.html" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Home</a>
+    <a href="lancamentos.html" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Lançamentos</a>
+    <a href="artigos.html" style="color:#FFC907;padding:12px 0" style-hover="color:#FFC907">Artigos</a>
+    <a href="time.html" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Time</a>
+  </nav>
+</header>
+<section data-screen-label="Artigos" style="padding:clamp(56px,9vw,120px) clamp(20px,5vw,72px) clamp(32px,5vw,56px)">
+  <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
+    <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Boanerges</div>
+    <h1 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(48px,11vw,150px);line-height:0.88;letter-spacing:-0.035em;color:#FFC907">Artigos</h1>
+  </div>
+</section>
+<section style="flex:1;padding:0 clamp(20px,5vw,72px) clamp(64px,9vw,120px)">
+  <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;border-bottom:1px solid #2A2924">
+    <sc-for list="{{ artigos }}" as="a" hint-placeholder-count="2">
+      <a href="{{ a.href }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(16px,4vw,48px);align-items:center;padding:clamp(24px,3.5vw,40px) 0;border-top:1px solid #2A2924;color:#F4F2EC" style-hover="color:#FFC907">
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82"><span>{{ a.dataFmt }}</span><span>{{ a.autor }}</span></div>
+          <div style="font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,44px);line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ a.titulo }}</div>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#B8B5AC;max-width:62ch;text-wrap:pretty">{{ a.resumo }}</p>
+        </div>
+        <span style="font-size:clamp(22px,3vw,32px);color:#FFC907">→</span>
+      </a>
+    </sc-for>
+    <sc-if value="{{ vazio }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;padding:40px 0;border-top:1px solid #2A2924;font-family:'arpona','Figtree',sans-serif;font-style:italic;font-weight:500;font-size:clamp(22px,2.4vw,30px);color:#D9D6CD">Primeiros artigos em breve...</p>
+    </sc-if>
+  </div>
+</section>
+<footer style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px clamp(16px,4vw,56px);border-top:1px solid #2A2924;font-size:13px;color:#8C8A82">
+  <span>©2026 Boanerges Produções, Ltda.</span>
+  <span>Todos os direitos reservados</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lista: null, pronto: false };
+  componentDidMount() {
+    const go = () => { if (window.BOANERGES_ARTIGOS) { this.setState({ lista: window.BOANERGES_ARTIGOS, pronto: true }); return true; } return false; };
+    if (!go()) { let n = 0; this.iv = setInterval(() => { if (go() || ++n > 100) { clearInterval(this.iv); this.setState({ pronto: true }); } }, 50); }
+  }
+  componentWillUnmount() { clearInterval(this.iv); }
+  fmt(d) {
+    const m = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+    const [y, mo, da] = String(d || '').split('-').map(Number);
+    return y ? da + ' de ' + m[mo - 1] + ', ' + y : '';
+  }
+  publicados() {
+    return (this.state.lista || []).filter(a => !a.rascunho).slice().sort((a, b) => String(b.data).localeCompare(String(a.data)));
+  }
+  renderVals() {
+    const artigos = this.publicados().map(a => ({ ...a, href: 'artigo.html?a=' + encodeURIComponent(a.slug), dataFmt: this.fmt(a.data) }));
+    return { artigos, vazio: this.state.pronto && artigos.length === 0 };
+  }
+}
+</script>
+</body>
+</html>
