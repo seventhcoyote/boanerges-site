@@ -10,7 +10,7 @@
 <body style="background:#0A0A09">
 <x-dc>
 <helmet>
-<title>Artigos — Boanerges</title>
+<title>Loja — Boanerges</title>
 <link rel="icon" type="image/png" href="assets/brand/symbol-yellow.png">
 <link rel="apple-touch-icon" href="assets/brand/symbol-yellow.png">
 <link rel="stylesheet" href="https://use.typekit.net/lki5cby.css">
@@ -23,7 +23,6 @@ body{margin:0;background:#0A0A09;color:#F4F2EC;font-family:'arpona','Figtree',sa
 a{color:#FFC907;text-decoration:none}
 a:hover{color:#F4F2EC}
 </style>
-<script src="artigos.js"></script>
 </helmet>
 <div style="min-height:100vh;background:#0A0A09;display:flex;flex-direction:column">
 <header style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(12px,2.5vw,22px) clamp(16px,4vw,56px);background:rgba(10,10,9,0.86);backdrop-filter:blur(8px)">
@@ -33,31 +32,31 @@ a:hover{color:#F4F2EC}
   <nav style="display:flex;align-items:center;gap:clamp(10px,2.6vw,40px);font-size:clamp(9.5px,2.6vw,13px);font-weight:600;letter-spacing:clamp(0.02em,0.5vw,0.08em);text-transform:uppercase;white-space:nowrap">
     <a href="/" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Home</a>
     <a href="/lancamentos" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Lançamentos</a>
-    <a href="/loja" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Loja</a>
-    <a href="/artigos" style="color:#FFC907;padding:12px 0" style-hover="color:#FFC907">Artigos</a>
+    <a href="/loja" style="color:#FFC907;padding:12px 0" style-hover="color:#FFC907">Loja</a>
+    <a href="/artigos" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Artigos</a>
     <a href="/time" style="color:#F4F2EC;padding:12px 0" style-hover="color:#FFC907">Time</a>
   </nav>
 </header>
-<section data-screen-label="Artigos" style="padding:clamp(56px,9vw,120px) clamp(20px,5vw,72px) clamp(32px,5vw,56px)">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
+<section data-screen-label="Loja" style="padding:clamp(56px,9vw,120px) clamp(20px,5vw,72px) clamp(32px,5vw,56px)">
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
     <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Boanerges</div>
-    <h1 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(48px,11vw,150px);line-height:0.88;letter-spacing:-0.035em;color:#FFC907">Artigos</h1>
+    <h1 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(48px,11vw,150px);line-height:0.88;letter-spacing:-0.035em;color:#FFC907">Loja</h1>
   </div>
 </section>
 <section style="flex:1;padding:0 clamp(20px,5vw,72px) clamp(64px,9vw,120px)">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;border-bottom:1px solid #2A2924">
-    <sc-for list="{{ artigos }}" as="a" hint-placeholder-count="2">
-      <a href="{{ a.href }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(16px,4vw,48px);align-items:center;padding:clamp(24px,3.5vw,40px) 0;border-top:1px solid #2A2924;color:#F4F2EC" style-hover="color:#FFC907">
-        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
-          <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82"><span>{{ a.dataFmt }}</span><span>{{ a.autor }}</span></div>
-          <div style="font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,44px);line-height:1.02;letter-spacing:-0.02em;text-wrap:balance">{{ a.titulo }}</div>
-          <p style="margin:0;font-size:16px;line-height:1.6;color:#B8B5AC;max-width:62ch;text-wrap:pretty">{{ a.resumo }}</p>
-        </div>
-        <span style="font-size:clamp(22px,3vw,32px);color:#FFC907">→</span>
+  <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,4vw,40px)">
+    <sc-for list="{{ produtos }}" as="p" hint-placeholder-count="0">
+      <a href="{{ p.link }}" style="display:flex;flex-direction:column;gap:14px;color:#F4F2EC" style-hover="color:#FFC907">
+        <img src="{{ p.capa }}" alt="{{ p.titulo }}" style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;border:1px solid #2A2924">
+        <div style="font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:22px;line-height:1.1">{{ p.titulo }}</div>
+        <div style="font-size:15px;font-weight:600;color:#FFC907">{{ p.preco }}</div>
       </a>
     </sc-for>
-    <sc-if value="{{ vazio }}" hint-placeholder-val="{{ false }}">
-      <p style="margin:0;padding:40px 0;border-top:1px solid #2A2924;font-family:'arpona','Figtree',sans-serif;font-style:italic;font-weight:500;font-size:clamp(22px,2.4vw,30px);color:#D9D6CD">Primeiros artigos em breve...</p>
+    <sc-if value="{{ vazio }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:20px;padding:clamp(40px,6vw,72px) 0;border-top:1px solid #2A2924;border-bottom:1px solid #2A2924">
+        <p style="margin:0;font-family:'arpona','Figtree',sans-serif;font-style:italic;font-weight:500;font-size:clamp(24px,3vw,36px);color:#D9D6CD">Títulos disponíveis em breve...</p>
+        <a href="/lancamentos" style="align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#FFC907;padding:12px 0;border-bottom:2px solid #FFC907" style-hover="color:#F4F2EC">Ver lançamentos →</a>
+      </div>
     </sc-if>
   </div>
 </section>
@@ -71,23 +70,10 @@ a:hover{color:#F4F2EC}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { lista: null, pronto: false };
-  componentDidMount() {
-    const go = () => { if (window.BOANERGES_ARTIGOS) { this.setState({ lista: window.BOANERGES_ARTIGOS, pronto: true }); return true; } return false; };
-    if (!go()) { let n = 0; this.iv = setInterval(() => { if (go() || ++n > 100) { clearInterval(this.iv); this.setState({ pronto: true }); } }, 50); }
-  }
-  componentWillUnmount() { clearInterval(this.iv); }
-  fmt(d) {
-    const m = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-    const [y, mo, da] = String(d || '').split('-').map(Number);
-    return y ? da + ' de ' + m[mo - 1] + ', ' + y : '';
-  }
-  publicados() {
-    return (this.state.lista || []).filter(a => !a.rascunho).slice().sort((a, b) => String(b.data).localeCompare(String(a.data)));
-  }
+  // Para adicionar produtos: { titulo, preco, capa, link } — link pode ser a página de compra (ex.: Amazon, loja própria)
+  produtos = [];
   renderVals() {
-    const artigos = this.publicados().map(a => ({ ...a, href: '/artigo?a=' + encodeURIComponent(a.slug), dataFmt: this.fmt(a.data) }));
-    return { artigos, vazio: this.state.pronto && artigos.length === 0 };
+    return { produtos: this.produtos, vazio: this.produtos.length === 0 };
   }
 }
 </script>

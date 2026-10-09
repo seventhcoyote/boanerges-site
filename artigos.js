@@ -1,17 +1,122 @@
 /*
   ARTIGOS DA BOANERGES
   Para publicar um artigo, copie um bloco { ... } abaixo, cole no topo da lista e edite.
-  - slug: identificador curto, sem espaços nem acentos (vira o link: Artigo.dc.html?a=slug)
+  - slug: identificador curto, sem espaços nem acentos (vira o link: /artigo?a=slug)
   - data: "AAAA-MM-DD"
   - corpo: lista de blocos, em ordem:
       "Texto"                         → parágrafo
+      "Texto com *itálico*"           → asteriscos deixam o trecho em itálico
       { titulo: "..." }               → subtítulo
       { citacao: "..." }              → citação em destaque
+      { nota: "..." }                 → nota pequena em itálico (agradecimentos, avisos)
       { imagem: "assets/x.jpg", legenda: "..." } → imagem (legenda opcional)
       { imagem: "...", legenda: "...", tamanho: "pequena" } → imagem menor, centralizada (bom p/ capas de livro e retratos)
+  - conto: true → parágrafos com recuo e sem espaço entre eles (para contos e ficção)
   - rascunho: true → esconde o artigo do site
 */
 window.BOANERGES_ARTIGOS = [
+  {
+    slug: "o-mundo-se-lembra",
+    titulo: "O Mundo se Lembra",
+    resumo: "Uma pequena estória por Israel Subira",
+    data: "2026-10-09",
+    autor: "Israel Subira",
+    conto: true,
+    corpo: [
+      { nota: "Agradecimentos a Renan Butkeraites, Italo Pacheco, Dhomini Martins, Yrwin Gomes e Rony pelas sugestões." },
+      "Mais uma linha, mais um fio. As horas sumiam e os dias meio que se aglomeravam num só quando o Velho Rorik costurava. O giro constante da roca costumava lhe roubar a atenção. Deixava nele a sensação incômoda de que o tempo era… fugaz. Talvez a culpa nem fosse da roca, e sim da idade; o joelho ruim não o deixava manter o pedal em movimento por muito tempo. De qualquer forma, não era preciso muito para roubar a atenção do Velho Rorik. Não que a costura não merecesse atenção, mas era, por natureza, um ofício monótono. Era um trabalho tão bom quanto qualquer outro para um homem da sua idade, e o que rendia bastava para que ele e sua esposa vivessem com conforto. Naquela aldeia, pelo menos.",
+      "Não era nenhum formigueiro de aventureiros. Não havia ali guilda de renome nem taverna das mais agitadas; o que havia, e de sobra, era gente de idade, como eles. A aldeia não ficava longe de uma das grandes cidades da província, e quase todo o comércio do lugar vinha dos aventureiros que apareciam atrás de serviço mais em conta. Não era assim que Rorik tinha imaginado a velhice. Ver pessoas indo e vindo, largando em suas mãos o que uma aventura estragara para logo levá-lo, remendado, à outra, enquanto ele próprio já não era capaz de grandes feitos.",
+      "O velho suspirou. *Mais uma*, pensou, ao cortar o fio da roca e terminar de enrolá-lo no carretel. Olhou demoradamente para fora: a aldeia sossegada, meia dúzia de pessoas no caminho de pedra.",
+      "*Já está na hora do chá?*",
+      "Rorik era um entusiasta do chá, mas um entusiasta metódico, quase ritual. Permitia-se duas pausas por dia, todo santo dia, é claro. Uma, porém, era no desjejum, e a outra no fim da jornada, ao lado da esposa.",
+      "Só que o sol ainda estava alto demais para dar o dia por encerrado.",
+      "— Unghh — resmungou, esticando as costas.",
+      "*Dá tempo para mais uma.*",
+      "Estendeu a mão para uma capa dobrada sobre a bancada. Presa a ela por um alfinete havia um pedaço de pergaminho, com as instruções que ele mesmo deixara, mais cedo, sobre o que fazer com a encomenda.",
+      "Leu o pergaminho; na própria letra, dizia: “Costurar com linha de linho encerada, a verde.” Assentiu de leve, lembrando-se enfim do motivo de ter passado a manhã fiando linho: aquela capa levaria o resto da sua linha verde.",
+      "Era uma bela capa, de um verde-escuro, com adornos nas bordas, fechada no alto por um broche de bronze da guilda dos patrulheiros. Devia ser de algum recruta, no entanto, envergonhado demais para entregá-la ao intendente da própria guilda.",
+      "— O que foi que aconteceu aqui? — sussurrou, desdobrando a capa e deixando-a pender das mãos. Achou o furo de imediato.",
+      "Parecia obra de uma flecha que a atravessara de lado a lado. O velho examinou o estrago mais de perto; a impressão era que o dano foi causado por uma pedra pontiaguda, bruta, malfeita.",
+      "*Goblins, com certeza.*",
+      "Sorriu, imaginando exatamente como a coisa aconteceu. Era um jeito de arruinar uma capa perfeita. *Mas, pensando bem, antes uma capa furada do que uma flechada no joelho*, pensou, enquanto as mãos, por instinto, pousavam sobre o joelho direito. Grunhiu, espantando a ideia, e abriu uma das gavetas da mesa de costura. Remexeu um par de latinhas etiquetadas até a mão bater no fundo.",
+      "Fechou a gaveta, irritado, e tentou outra. Nada.",
+      "Aqueceu a garganta com um pigarro e então quebrou o silêncio da casa.",
+      "— Maeve!",
+      "Houve uma pequena demora, como se a esposa também tivesse pigarreado em algum outro canto da casa.",
+      "— O quêêê? — berrou a voz lá de baixo.",
+      "— Você viu a cera de abelha!?",
+      "— A o quê!?",
+      "Ele grunhiu e se levantou, indo devagar até a porta, mancando de leve. Escancarou-a e gritou de novo, voltado para a escada.",
+      "— A cera de abelha!",
+      "Um instante de silêncio.",
+      "— Eu trouxe aqui pra baixo pra selar uma carta.",
+      "Rorik bufou. Maeve sabia muito bem o que ele achava de ela pegar as coisas da oficina e não devolvê-las ao devido lugar.",
+      "— E que tal trazer de volta, então!?",
+      "A resposta veio ligeira.",
+      "— Vem buscar você, seu folgado!",
+      "Rorik soltou uma risada. Maeve sempre fora muito… intensa. Não pensava duas vezes antes de dizer o que lhe passava pela cabeça e, ainda assim, dava um jeito de ser cativante até mesmo na grosseria. Ele sabia que discutir seria gastar fôlego à toa; Maeve, afinal, era teimosa.",
+      "De modo que começou a descida. Era uma jornada curta, embora mais custosa agora do que ele gostaria de admitir.",
+      "*Quão desleixado alguém precisa ser para levar uma flechada de goblin?* Pensou, vencendo o primeiro degrau. *Eu jamais deixaria isso acontecer. Não no meu auge.* O joelho dolorido quase ousou discordar, mas ser atingido por um arqueiro élfico de uma seita sombria era outra história.",
+      "Olhou para a direita, onde o bico de um grifo, preso a uma placa de madeira, pendia da parede da escada: troféu de jornadas de muitos anos atrás.",
+      "Não pôde deixar de lembrar o dia em que ele e os companheiros abateram a fera. Ela vinha atacando uma aldeia nos confins do Leste, ameaçando mercadores e crianças. O grupo estava só de passagem quando ouviu os rumores e se ofereceu para ajudar.",
+      "Rorik ainda se lembrava do muxoxo de desdém do chefe da aldeia quando disseram que dariam conta da criatura, e do espanto no rosto do mesmo quando voltaram, a passo tranquilo, com a cabeça dela. Ainda guardava uma ou duas cicatrizes daquele encontro. O sorriso, porém, logo murchou. Pois, quando retornou àquela aldeia uns meses depois, ninguém sabia quem ele era.",
+      "Venceu a custo mais um degrau e relanceou o escudo quebrado que pendia, em dois pedaços, da parede à esquerda: outra de suas relíquias. Enfrentara sozinho um ogro descomunal e sobrevivera. Não sem cicatrizes, é claro, mas fora um duelo lendário. Ao menos na cabeça dele.",
+      "Tampouco havia contos ou canções a respeito.",
+      "O último degrau doeu mais que os anteriores, como se a emoção o tivesse deixado mais pesado a cada passo. Era essa a dor de Rorik. Sempre sonhara em se tornar um herói, como os das lendas e canções que ouvia quando menino. Mas ninguém se lembrava dele por nenhuma de suas aventuras. *Imagino que abater grifos não impressione tanto quanto matar dragões, nem duelar com ogros tanto quanto derrubar gigantes.* Outros haviam se tornado heróis no seu tempo; Rorik não fora um deles. Agora não passava de um alfaiate de aldeia. Arrastou um passo até a janela e conferiu o sol outra vez. Obviamente, o astro mal tivera tempo de descer desde a última olhada, de modo que ainda não era hora do chá. Nada além dos próprios hábitos o impedia de tomá-lo em outro horário, mas ele também era teimoso. Passou por um pedaço de pergaminho pregado à parede, um desenho a carvão feito pela neta, e não lhe deu atenção ao entrar na cozinha.",
+      "Estava atrás da cera de abelha, mas foi como se os próprios pés o traíssem e o levassem à despensa. Só que ainda não era hora do chá. Deteve-se ali um momento, mesmo assim, admirando a sua coleção de ervas. Os aromas chegaram todos de uma vez, mas, depois de aspirá-los, ele soube distinguir a nota fresca de pinho do alecrim, o almíscar terroso da sálvia, o calor aromático do tomilho. Já ia dar as costas à despensa quando o olhar caiu sobre uma erva guardada num pote de vidro. Não resistiu. Pegou o pote e ergueu a tampa, e respirou fundo aquele frescor cítrico.",
+      "*Cidrão.*",
+      "Fechou os olhos, deliciado, como se o cheiro bastasse para aplacar um pouco a saudade do segundo chá. Guardou a erva. Aquela era só para ocasiões especiais, mais difícil de achar que as outras.",
+      "E, antes que conseguisse se afastar da despensa e ir atrás da cera, uma mão suave tocou-lhe o ombro.",
+      "A de Maeve.",
+      "Trazia no rosto um sorriso franco, embora Rorik a conhecesse o bastante para saber que metade daquele sorriso era por tê-lo feito descer em vez de ela mesma subir. A outra metade dizia simplesmente “eu te amo”, sem precisar de palavras.",
+      "Veja bem, essa tinha sido uma das coisas que fizeram Rorik se apaixonar por Maeve, lá atrás. Ou que ajudaram, melhor dizendo, pois ninguém se apaixona por um motivo só. O jeito como Maeve falava com os olhos, os lábios e os ombros, sem precisar dizer nada. Com as palavras ela era brincalhona, vivia chamando os amigos de nomes que alguns julgariam mal-educados e fazendo piadas que outros achariam ofensivas, mas a voz era sempre terna e os modos, gentis.",
+      "Estendeu a mão com o tablete de cera, obrigando Rorik, ainda assim, a dar mais um passo para apanhá-lo.",
+      "— Que que você tá fazendo? — perguntou ela, com o sotaque carregado.",
+      "— Capa de patrulheiro. Flecha de goblin, aposto.",
+      "Ele não se demorou; deu meia-volta e tomou outra vez o rumo da escada.",
+      "— Flecha de goblin? — repetiu ela.",
+      "Rorik só grunhiu que sim.",
+      "— Desleixado — comentou ela, enquanto ele travava sua batalha com os degraus, um a um.",
+      "Ele riu baixinho; tinha pensado o mesmo.",
+      "— Nunca teria acontecido com você — acrescentou ela, num tom brando.",
+      "Aquilo arrancou de Rorik um sorriso na mesma hora.",
+      "— Pode apostar — disse, chegando ao topo.",
+      "Soltou outro grunhido ao sentar-se para retomar o trabalho.",
+      "Tirou do gancho a meada de linho verde e estendeu um pedaço da linha sobre a capa; a cor era quase idêntica. Um bom olho notaria a pequena diferença. Franziu a testa e seguiu em frente. Tinha certeza de que o intendente da guilda teria acertado o tom, mas o freguês patrulheiro escolhera um artesão mais simples, fosse pela vergonha, fosse pelo desconto.",
+      "Aparou as bordas esgarçadas do furo e assentou por trás dele um retalho de lã verde. Depois correu a linha pelo tablete de cera, uma vez, duas, até senti-la firme e lisa entre os dedos, e enfiou-a na agulha na segunda tentativa, o que contou como uma pequena vitória. Não demorou a conferir o sol de novo; estava um pouco mais baixo, mas não o bastante.",
+      "Então remendou o furo, pouco a pouco, fio a fio. Olhou pela janela para ver as horas mais uma vez. Um vizinho passou e acenou lá de baixo. Rorik tinha as mãos ocupadas, de modo que respondeu com um aceno de cabeça.",
+      "Os pontos iam miúdos e cerrados, cada um apanhando a beira do rasgo e prendendo-a contra o remendo. Por baixo, por cima, puxa. Por baixo, por cima, puxa. No fim das contas, não era tão diferente da roca. As mãos sabiam o caminho, e a mente ficava livre para vagar por onde bem entendesse.",
+      "A agulha atravessou o pano pela última vez. A capa estava remendada. Rorik a esticou sobre a mesa e aprovou com um aceno curto. Começou a dobrá-la, mas, antes de guardá-la, um pensamento lhe passou pela cabeça. Ele costumava ficar muito bem de capa. E se…? Não, de jeito nenhum, seria falta de profissionalismo… Bem, ele só saberia o que o freguês ia ver se a vestisse como o freguês a vestiria, certo? Experimentá-la seria, na verdade, muito profissional da parte dele.",
+      "O sol já ia mais baixo; estava quase na hora do chá, mas era preciso ser profissional.",
+      "Rorik postou-se diante do espelho de bronze, virando para um lado e para o outro. A capa era bonita, mas ele não parecia nada heróico. Os braços e as pernas continuavam finos, só que os últimos anos lhe haviam dado uma barriga bem redonda. Estava ficando calvo, e o cabelo que restava tinha embranquecido por inteiro. Nem barba de mago ele tinha, pois sempre preferira o bigode.",
+      "*Estou velho.*",
+      "Envelhecer era inevitável, mas havia outra coisa que tornava aquilo amargo.",
+      "*Eu fracassei.*",
+      "*Não sou campeão de nada, e o mundo não se lembra de mim. Ninguém registrou minhas jornadas, ninguém cantou minhas histórias.*",
+      "Tirou a capa, sentindo-se ridículo por tê-la sequer experimentado. Seus dias de glória tinham ficado para trás e, embora sempre ouvisse os mais velhos dizerem que o tempo voa e a vida é breve, só agora começava a sentir o golpe.",
+      "A vida era breve, de fato. Tudo tinha passado tão depressa.",
+      "Tentou segurar as lágrimas, e não conseguiu.",
+      "*Alguns dos meus amigos chegaram lá, e nenhum deles era mais hábil do que eu. Será que só me faltou sorte? Eu tinha o que era preciso naquele tempo… Não tinha? Por que ninguém se impressionava comigo? Será que eu… Será que isto… Que cheiro é esse?*",
+      "*Cidrão?*",
+      "A porta da oficina se abriu de repente. Ele enxugou depressa as lágrimas e terminou de dobrar a capa antes de se virar. Lá estava Maeve, caneca de cerâmica na mão, fumegante, o aroma cítrico invadindo o cômodo. Também os cachos dela tinham sido tomados pelo prateado e pelo branco, embora um dia tivessem sido bem escuros. A pele não era tão enrugada quanto a de Rorik, mas a idade a alcançara do mesmo jeito. Tinham quase a mesma idade. O sorriso, porém, não envelhecera nada. Ela pousou nele uns olhos tão maravilhados que, de repente, Rorik se sentiu tão jovem quanto já fora um dia. Mas então a ficha caiu.",
+      "*O que ela está fazendo, gastando o meu cidrão? Isso é para ocasiões especiais.*",
+      "Franziu o cenho e deu voz ao pensamento.",
+      "— Qual é a ocasião especial?",
+      "Não era bem uma pergunta, embora viesse em forma de uma. O que ele queria mesmo era protestar contra a escolha da erva, mas ela apenas veio em sua direção, a caneca soltando vapor.",
+      "Entregou-a sem mais, os olhos presos aos dele.",
+      "— Você vai ver o pôr do sol comigo.",
+      "Virou-se e, a caminho da porta, olhou para ele por cima do ombro.",
+      "Ah, as lembranças inundaram-lhe a mente como um rio. Aquele gesto dela, o sorriso por cima do ombro, trouxe-lhe de uma só vez o dia em que se conheceram, as incontáveis encrencas em que ela o metera, o casamento, os filhos, depois os netos, milhares de pores do sol e… bem, o dia de hoje.",
+      "Talvez jamais fosse lembrado, mas ele certamente era amado, e disso não havia dúvida. Foi atrás dela, passando pelo bico do grifo, pelo escudo quebrado, e, enquanto penava para vencer o último degrau, voltou os olhos para um desenho a carvão pregado à parede. Era a versão da neta para uma de suas histórias. Uma figura humana de proporções não muito fiéis empunhava uma espada de traço torto contra um vulto enorme. A rudeza do desenho estava mais que perdoada, pois era obra de criança. Talvez as jornadas de Rorik não tivessem ficado sem registro, afinal. Aos olhos dela, aquele era o retrato de um herói. O avô.",
+      "O cheiro de cidrão subiu até ele mais uma vez quando Maeve falou pela janela.",
+      "— Tá esperando o quê?",
+      "O primeiro gole de chá desceu morno e reconfortante.",
+      "Ele saiu e viu a cena que já tinha visto centenas de vezes. O sol se punha sobre os campos do Oeste. A casa ficava numa leve colina, acima das outras, e dali se avistava o caminho de pedra que se estendia até o fim da aldeia, e depois os campos e as árvores recostados no poente.",
+      "Maeve bebia seu chá de pé, como sempre fazia ao ver o pôr do sol. Rorik ficou um pouco mais atrás, recém-saído de casa. Tomou mais um gole e então ergueu os olhos para os cachos de Maeve, acesos pela luz do fim da tarde.",
+      "Coçou a cabeça calva e riu sozinho. Ela nem precisava se virar de novo para que ele se sentisse um homem de sorte. Aquela mulher, que caminhara ao seu lado, que o amara, que lhe dera filhos e que agora mimava os seus netos, era o seu mundo.",
+      "E o mundo se lembra."
+    ]
+  },
   {
     slug: "a-sombra-ofuscada",
     titulo: "A Sombra Ofuscada",
