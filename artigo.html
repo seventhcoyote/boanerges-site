@@ -60,9 +60,23 @@ a:hover{color:#F4F2EC}
     <a href="/artigos" style="align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8C8A82;padding:12px 0" style-hover="color:#FFC907">← Artigos</a>
     <sc-if value="{{ achou }}" hint-placeholder-val="{{ true }}">
       <header style="display:flex;flex-direction:column;gap:18px">
-        <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82"><span>{{ artigo.dataFmt }}</span><span style="color:#FFC907">{{ artigo.autor }}</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 24px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82"><span>{{ artigo.dataFmt }}</span><span style="color:#FFC907">{{ artigo.autor }}</span></div>
+          <sc-if value="{{ temEn }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ toggleLang }}" aria-label="Mudar idioma / Switch language" style="flex-shrink:0;display:flex;align-items:center;gap:12px;padding:4px 0;background:none;border:0;cursor:pointer;font-family:'Figtree',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.12em;color:#8C8A82">
+            <span style="color:{{ ptColor }};transition:color .2s ease">PT</span>
+            <span style="position:relative;width:44px;height:24px;border-radius:12px;background:#2A2924;border:1px solid #3A3830;box-sizing:border-box;display:block">
+              <span style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#FFC907;transform:translateX({{ knobX }});transition:transform .2s ease;display:block"></span>
+            </span>
+            <span style="color:{{ enColor }};transition:color .2s ease">EN</span>
+          </button>
+        </sc-if>
+        </div>
         <h1 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(38px,6vw,72px);line-height:0.98;letter-spacing:-0.03em;color:#F4F2EC;text-wrap:balance">{{ artigo.titulo }}</h1>
         <p style="margin:0;font-size:clamp(18px,1.8vw,21px);line-height:1.55;color:#B8B5AC;text-wrap:pretty">{{ artigo.resumo }}</p>
+        <sc-if value="{{ temProcesso }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:-8px 0 0;font-size:clamp(15px,1.3vw,17px);line-height:1.5;color:#8C8A82">{{ procPre }} <a href="{{ artigo.processo }}" target="_blank" rel="noopener" style="color:#FFC907;border-bottom:1px solid rgba(255,201,7,0.4);padding-bottom:1px" style-hover="color:#F4F2EC;border-bottom-color:#F4F2EC">{{ procLink }}</a>{{ procPost }}</p>
+        </sc-if>
       </header>
       <div style="display:flex;flex-direction:column;gap:{{ gap }};padding-top:8px;border-top:1px solid #2A2924">
         <sc-for list="{{ blocos }}" as="b" hint-placeholder-count="3">
@@ -104,7 +118,7 @@ a:hover{color:#F4F2EC}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { lista: null, pronto: false };
+  state = { lista: null, pronto: false, lang: 'pt' };
   componentDidMount() {
     const go = () => { if (window.BOANERGES_ARTIGOS) { this.setState({ lista: window.BOANERGES_ARTIGOS, pronto: true }); return true; } return false; };
     if (!go()) { let n = 0; this.iv = setInterval(() => { if (go() || ++n > 100) { clearInterval(this.iv); this.setState({ pronto: true }); } }, 50); }
@@ -119,16 +133,22 @@ class Component extends DCLogic {
     return (this.state.lista || []).filter(a => !a.rascunho).slice().sort((a, b) => String(b.data).localeCompare(String(a.data)));
   }
   componentDidUpdate() {
-    const a = this.atual();
+    const b = this.atual();
+    const a = b && b.en && this.state.lang === 'en' ? { ...b, ...b.en } : b;
     if (a) document.title = a.titulo + ' — Boanerges';
+    if (a) document.documentElement.lang = this.state.lang === 'en' && b.en ? 'en' : 'pt-BR';
   }
+  toggleLang() { this.setState(s => ({ lang: s.lang === 'en' ? 'pt' : 'en' })); }
   atual() {
     const pub = this.publicados();
     const slug = new URLSearchParams(location.search).get('a');
     return slug ? (this.state.lista || []).find(a => a.slug === slug) : pub[0];
   }
   renderVals() {
-    const a = this.atual();
+    const base = this.atual();
+    const temEn = !!(base && base.en);
+    const isEn = temEn && this.state.lang === 'en';
+    const a = isEn ? { ...base, ...base.en } : base;
     const conto = !!(a && a.conto); let pi = 0;
     const blocos = ((a && a.corpo) || []).map(b => {
       if (typeof b === 'string') { const segs = b.split(/(\*[^*]+\*)/).filter(Boolean).map(t => /^\*[^*]+\*$/.test(t) ? { t: t.slice(1, -1), it: true } : { t, rm: true }); const indent = conto && pi++ > 0 ? '1.5em' : '0'; return { isP: true, segs, indent }; }
@@ -141,7 +161,7 @@ class Component extends DCLogic {
     return {
       artigo: a ? { ...a, dataFmt: this.fmt(a.data) } : {},
       achou: !!a, naoAchou: this.state.pronto && !a,
-      blocos, gap: conto ? '4px' : '22px'
+      blocos, temEn, temProcesso: !!(a && a.processo), procPre: isEn ? 'follow the' : 'acompanhe o', procLink: isEn ? 'creative process' : 'processo criativo', procPost: isEn ? ' (in Portuguese)' : '', toggleLang: () => this.toggleLang(), knobX: isEn ? '20px' : '0px', ptColor: isEn ? '#8C8A82' : '#F4F2EC', enColor: isEn ? '#F4F2EC' : '#8C8A82', gap: conto ? '4px' : '22px'
     };
   }
 }
