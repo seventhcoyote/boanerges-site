@@ -62,19 +62,13 @@ a:hover{color:#F4F2EC}
 </section>
 <section style="flex:1;padding:0 clamp(20px,5vw,72px) clamp(64px,9vw,120px)">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,4vw,40px)">
-    <sc-for list="{{ produtos }}" as="p" hint-placeholder-count="0">
-      <a href="{{ p.link }}" style="display:flex;flex-direction:column;gap:14px;color:#F4F2EC" style-hover="color:#FFC907">
-        <img src="{{ p.capa }}" alt="{{ p.titulo }}" style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;border:1px solid #2A2924">
-        <div style="font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:22px;line-height:1.1">{{ p.titulo }}</div>
-        <div style="font-size:15px;font-weight:600;color:#FFC907">{{ p.preco }}</div>
+    <article style="display:flex;flex-direction:column;gap:clamp(20px,3vw,32px);padding-top:clamp(32px,5vw,48px);border-top:1px solid #2A2924">
+      <h2 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(32px,5vw,64px);line-height:0.95;letter-spacing:-0.025em;color:#F4F2EC;text-wrap:balance">Pré-Venda <span style="font-style:italic;font-weight:500;color:#FFC907">Bleeding Light</span></h2>
+      <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="display:block">
+        <img src="assets/loja/muko-gawa-descritivo.jpg" alt="Mukō-Gawa: Bleeding Light — páginas internas do mangá" style="width:100%;height:auto;aspect-ratio:16/9;display:block">
       </a>
-    </sc-for>
-    <sc-if value="{{ vazio }}" hint-placeholder-val="{{ true }}">
-      <div style="display:flex;flex-direction:column;gap:20px;padding:clamp(40px,6vw,72px) 0;border-top:1px solid #2A2924;border-bottom:1px solid #2A2924">
-        <p style="margin:0;font-family:'arpona','Figtree',sans-serif;font-style:italic;font-weight:500;font-size:clamp(24px,3vw,36px);color:#D9D6CD">Títulos disponíveis em breve...</p>
-        <a href="/lancamentos" style="align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#FFC907;padding:12px 0;border-bottom:2px solid #FFC907" style-hover="color:#F4F2EC">Ver lançamentos →</a>
-      </div>
-    </sc-if>
+      <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;align-items:center;gap:12px;padding:18px 32px;background:#FFC907;color:#0A0A09;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:background .2s ease" style-hover="background:#F4F2EC;color:#0A0A09">Garanta o seu <span>→</span></a>
+    </article>
   </div>
 </section>
 <footer style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px clamp(16px,4vw,56px);border-top:1px solid #2A2924;font-size:13px;color:#8C8A82">
@@ -87,11 +81,7 @@ a:hover{color:#F4F2EC}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  // Para adicionar produtos: { titulo, preco, capa, link } — link pode ser a página de compra (ex.: Amazon, loja própria)
-  produtos = [];
-  renderVals() {
-    return { produtos: this.produtos, vazio: this.produtos.length === 0 };
-  }
+  renderVals() { return {}; }
 }
 </script>
 </body>

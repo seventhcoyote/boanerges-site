@@ -24,7 +24,7 @@ window.BOANERGES_ARTIGOS = [
     data: "2026-10-09",
     autor: "Israel Subira",
     conto: true,
-    processo: "https://www.instagram.com/stories/highlights/17937901596391987/",
+    processo: "https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTM3OTAxNTk2MzkxOTg3?obrf=aXAyMzQ2N3FneG9y",
     en: {
       titulo: "The World Remembers",
       resumo: "A Short Story by Israel Subira",

@@ -81,10 +81,13 @@ a:hover{color:#F4F2EC}
           <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Sinopse</div>
           <p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:#D9D6CD;max-width:60ch;text-wrap:pretty">Um homem abandona o pacto que seus ancestrais carregavam com os céus. Enquanto sua esperança se esvai, os Anjos que o guardam sangram num campo de batalha, resilientes apesar da ignorância da humanidade quanto ao conflito que os consome. Mas mesmo com os céus manchados pelas marcas dessa guerra invisível, um novo descendente se levanta, disposto a carregar o pacto adiante.</p>
         </div>
-        <a href="https://instagram.com/israelsubira" target="_blank" rel="noopener" onMouseEnter="{{ preOn }}" onMouseLeave="{{ preOff }}" onFocus="{{ preOn }}" onBlur="{{ preOff }}" style="align-self:flex-start;display:grid;padding:18px 28px;background:{{ preBg }};color:#0A0A09;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:background .2s ease">
-          <span style="grid-area:1/1;display:flex;align-items:center;justify-content:center;gap:12px;opacity:{{ preIdle }};transition:opacity .15s ease">Pré-Venda <span>→</span></span>
-          <span style="grid-area:1/1;display:flex;align-items:center;justify-content:center;gap:10px;color:#F4F2EC;opacity:{{ preHover }};transition:opacity .15s ease" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#F4F2EC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="1.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg>Em breve</span>
-        </a>
+        <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;align-items:center;gap:12px;padding:18px 28px;background:#FFC907;color:#0A0A09;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:background .2s ease" style-hover="background:#F4F2EC;color:#0A0A09">Pré-Venda <span>→</span></a>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;padding-top:clamp(32px,5vw,56px);border-top:1px solid #2A2924">
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Anúncio da campanha</div>
+      <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid #2A2924">
+        <iframe src="https://www.youtube-nocookie.com/embed/7drIevtAxCo?rel=0" title="Mukō-Gawa: Bleeding Light — anúncio da pré-venda" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
       </div>
     </div>
   </div>
@@ -99,17 +102,7 @@ a:hover{color:#F4F2EC}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { pre: false };
-  renderVals() {
-    const on = this.state.pre;
-    return {
-      preOn: () => this.setState({ pre: true }),
-      preOff: () => this.setState({ pre: false }),
-      preBg: on ? '#0A0A09' : '#FFC907',
-      preIdle: on ? 0 : 1,
-      preHover: on ? 1 : 0
-    };
-  }
+  renderVals() { return {}; }
 }
 </script>
 </body>
