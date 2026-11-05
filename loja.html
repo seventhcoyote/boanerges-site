@@ -39,6 +39,10 @@ body{overflow-x:hidden}
 body{margin:0;background:#0A0A09;color:#F4F2EC;font-family:'arpona','Figtree',sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#FFC907;text-decoration:none}
 a:hover{color:#F4F2EC}
+.mg-track{scrollbar-width:none}
+.mg-track::-webkit-scrollbar{display:none}
+.mg-slide{aspect-ratio:16/9}
+@media (max-width:700px){.mg-slide{aspect-ratio:4/5}.mg-seta{display:none}}
 </style>
 </helmet>
 <div style="min-height:100vh;background:#0A0A09;display:flex;flex-direction:column">
@@ -64,10 +68,63 @@ a:hover{color:#F4F2EC}
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,4vw,40px)">
     <article style="display:flex;flex-direction:column;gap:clamp(20px,3vw,32px);padding-top:clamp(32px,5vw,48px);border-top:1px solid #2A2924">
       <h2 style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:800;font-size:clamp(32px,5vw,64px);line-height:0.95;letter-spacing:-0.025em;color:#F4F2EC;text-wrap:balance">Pré-Venda <span style="font-style:italic;font-weight:500;color:#FFC907">Bleeding Light</span></h2>
-      <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="display:block">
-        <img src="assets/loja/muko-gawa-descritivo.jpg" alt="Mukō-Gawa: Bleeding Light — páginas internas do mangá" style="width:100%;height:auto;aspect-ratio:16/9;display:block">
-      </a>
-      <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;align-items:center;gap:12px;padding:18px 32px;background:#FFC907;color:#0A0A09;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:background .2s ease" style-hover="background:#F4F2EC;color:#0A0A09">Garanta o seu <span>→</span></a>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="position:relative">
+          <div id="mg-galeria" class="mg-track" aria-label="Galeria de imagens" style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;background:#141412;border:1px solid #2A2924">
+            <sc-for list="{{ fotos }}" as="f" hint-placeholder-count="4">
+              <div class="mg-slide" style="flex:0 0 100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center">
+                {{ f.imgEl }}
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" class="mg-seta" onClick="{{ anterior }}" aria-label="Imagem anterior" style="position:absolute;top:50%;left:12px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(10,10,9,0.72);color:#FFC907;font-size:20px;cursor:pointer;opacity:{{ opAnt }};transition:opacity .2s ease">←</button>
+          <button type="button" class="mg-seta" onClick="{{ proxima }}" aria-label="Próxima imagem" style="position:absolute;top:50%;right:12px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(10,10,9,0.72);color:#FFC907;font-size:20px;cursor:pointer;opacity:{{ opProx }};transition:opacity .2s ease">→</button>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+          <div style="display:flex;gap:8px;overflow-x:auto">
+            <sc-for list="{{ fotos }}" as="f" hint-placeholder-count="4">
+              <button type="button" onClick="{{ f.ir }}" aria-label="{{ f.rotulo }}" style="flex-shrink:0;width:clamp(56px,9vw,88px);aspect-ratio:1/1;padding:0;border:2px solid {{ f.borda }};background:#141412;cursor:pointer;opacity:{{ f.op }};transition:opacity .2s ease, border-color .2s ease">
+                {{ f.thumbEl }}
+              </button>
+            </sc-for>
+          </div>
+          <div style="flex-shrink:0;font-size:13px;font-weight:600;letter-spacing:0.12em;color:#8C8A82">{{ contador }}</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,72px);align-items:start;padding-top:clamp(8px,2vw,16px)">
+        <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,32px)">
+          <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:20px 32px;padding:24px 0;border-top:1px solid #2A2924;border-bottom:1px solid #2A2924">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <dt style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Lançamento</dt>
+              <dd style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:600;font-size:20px;color:#F4F2EC">2026</dd>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <dt style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Gênero</dt>
+              <dd style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:600;font-size:20px;color:#F4F2EC">Fantasia</dd>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <dt style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Autores</dt>
+              <dd style="margin:0;font-family:'arpona','Figtree',sans-serif;font-weight:600;font-size:20px;color:#F4F2EC">Isra x Match</dd>
+            </div>
+          </dl>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Sobre o produto</div>
+            <p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:#D9D6CD;max-width:60ch;text-wrap:pretty">Dark Fantasy inspirado em mitologia e literatura bíblica. Anjos e demônios em uma guerra que a humanidade não vê.</p>
+            <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid #2A2924">
+              <li style="padding:12px 0;border-bottom:1px solid #2A2924;font-size:16px;color:#F4F2EC">144 páginas.</li>
+              <li style="padding:12px 0;border-bottom:1px solid #2A2924;font-size:16px;color:#F4F2EC">Mangá, leitura no sentido Japonês.</li>
+              <li style="padding:12px 0;border-bottom:1px solid #2A2924;font-size:16px;color:#F4F2EC">Não recomendado para menores de 16 anos.</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,32px)">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8C8A82">Sinopse</div>
+            <p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:#D9D6CD;max-width:60ch;text-wrap:pretty">Um homem abandona o pacto que seus ancestrais carregavam com os céus. Enquanto sua esperança se esvai, os Anjos que o guardam sangram num campo de batalha, resilientes apesar da ignorância da humanidade quanto ao conflito que os consome. Mas mesmo com os céus manchados pelas marcas dessa guerra invisível, um novo descendente se levanta, disposto a carregar o pacto adiante.</p>
+          </div>
+          <a href="https://www.catarse.com.br/muko-gawa" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;align-items:center;gap:12px;padding:18px 32px;background:#FFC907;color:#0A0A09;font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:background .2s ease" style-hover="background:#F4F2EC;color:#0A0A09">Garanta o seu <span>→</span></a>
+        </div>
+      </div>
     </article>
   </div>
 </section>
@@ -81,7 +138,49 @@ a:hover{color:#F4F2EC}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  renderVals() { return {}; }
+  state = { idx: 0 };
+  fotos = [
+    { src: 'assets/muko-gawa-capa.jpg', alt: 'Capa de Mukō-Gawa: Bleeding Light' },
+    { src: 'assets/loja/muko-gawa-foto.jpg', alt: 'Mukō-Gawa: Bleeding Light — o livro em mãos' },
+    { src: 'assets/loja/muko-gawa-descritivo.jpg', alt: 'Mukō-Gawa: Bleeding Light — páginas internas do mangá' },
+    { src: 'assets/loja/muko-gawa-descritivo-2.jpg', alt: 'Mukō-Gawa: Bleeding Light — páginas internas do mangá, cena de batalha' }
+  ];
+  componentDidMount() {
+    this.onScroll = (e) => {
+      const t = e.target;
+      if (!t || t.id !== 'mg-galeria' || !t.clientWidth) return;
+      const i = Math.round(t.scrollLeft / t.clientWidth);
+      if (i !== this.state.idx) this.setState({ idx: i });
+    };
+    document.addEventListener('scroll', this.onScroll, true);
+  }
+  componentWillUnmount() { document.removeEventListener('scroll', this.onScroll, true); }
+  ir(i) {
+    const n = this.fotos.length, j = Math.max(0, Math.min(n - 1, i));
+    const t = document.getElementById('mg-galeria');
+    if (t) t.scrollTo({ left: j * t.clientWidth, behavior: 'smooth' });
+    this.setState({ idx: j });
+  }
+  renderVals() {
+    const idx = this.state.idx, n = this.fotos.length;
+    const fotos = this.fotos.map((f, i) => ({
+      ...f,
+      imgEl: React.createElement('img', { src: f.src, alt: f.alt, loading: i === 0 ? 'eager' : 'lazy', style: { maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' } }),
+      thumbEl: React.createElement('img', { src: f.src, alt: '', loading: 'lazy', style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }),
+      rotulo: 'Ver imagem ' + (i + 1) + ' de ' + n,
+      borda: i === idx ? '#FFC907' : '#2A2924',
+      op: i === idx ? '1' : '0.6',
+      ir: () => this.ir(i)
+    }));
+    return {
+      fotos,
+      anterior: () => this.ir(idx - 1),
+      proxima: () => this.ir(idx + 1),
+      opAnt: idx === 0 ? '0' : '1',
+      opProx: idx === n - 1 ? '0' : '1',
+      contador: (idx + 1) + ' / ' + n
+    };
+  }
 }
 </script>
 </body>
